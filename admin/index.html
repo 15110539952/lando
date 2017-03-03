@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/all.css"/>
+    <link rel="stylesheet" href="../css/admin.css"/>
+</head>
+<script>
+    if(sessionStorage.getItem('userId')==='landolixiaodong'||sessionStorage.getItem('userId')==='landolixiaoning'){
+//        alert('欢迎回来：'+sessionStorage.getItem('userId'));
+    }else{
+        location.href="login.html";
+    }
+</script>
+<body>
+    <img class="fixed-bg" src="../images/admin_bg.png"/>
+    <div class="bg-main">
+        <header class="header">
+            <h1 class="lf">管理员：<span></span></h1>
+            <img class="logo rt" src="../images/lando_logo.png"/>
+        </header>
+        <nav class="nav">
+            <ul>
+                <li data-index="1" class="active"><a href="#">banner图</a></li>
+                <li data-index="2"><a href="#">精彩案例</a></li>
+            </ul>
+        </nav>
+        <section>
+            <div class="admin_banner">
+                <div class="banner_model">
+                    <form enctype="multipart/form-data" class="form">
+                        <a href="#" class="close">×</a>
+                        <p>设置图片链接：<input class="burl" name="burl" type="text" placeholder="请输入图片链接"/></p>
+                        <p>选择---图片：<input id="imgUpload" type="file" name="file"/></p>
+                        <p><img  id="preview" title='选择上传图片，
+                        图片大小不超过2M，文件名称必须由英文和数字组成，只支持jpg/png/gif格式的图片。
+                        '/></p>
+                        <p><input class="btn" type="button" value="确 定" disabled/></p>
+                    </form>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>编号</td>
+                            <td>缩略图</td>
+                            <td>外链</td>
+                            <td>操作</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--<tr>-->
+                            <!--<td>1</td>-->
+                            <!--<td><img src="../images/banner_02.png"/></td>-->
+                            <!--<td>http://baidu.com</td>-->
+                            <!--<td><button>删除</button></td>-->
+                        <!--</tr>-->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"><button class="btn_s">上传</button></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="admin_case">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>编号</td>
+
+                            <td>案例名称</td>
+
+                            <td>作品时间</td>
+
+                            <td>背景图</td>
+
+                            <td>案例介绍</td>
+
+                            <td>操作</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12</td>
+
+                            <td class="case_name">案例一</td>
+
+                            <td>2017.2.23</td>
+
+                            <td>
+                                <img src="../images/case12.png"/>
+                            </td>
+
+                            <td class="case_content">初春，<br>闭眼感知自然万物的生长，蔓延。<br>
+                                那是 <br>植物对阳光的渴望，<br>那是<br>少年对爱的渴望。<br>……</td>
+
+                            <td>
+                                <button class="alter">修改</button>
+                                <br/>
+                                <button class="delete">删除</button>
+                                <br/>
+                                <button class="case_detail">查看详情</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="case_model">
+                    <form>
+                        <a href="#">×</a>
+                        <div>
+                            <input class="hidden" name="hidden" type="hidden" value="12346"/>
+                        </div>
+                        <div>
+                            <label>案例名称：</label>
+                            <input class="case_name" type="text" name="case_name"/>
+                        </div>
+                        <div>
+                            <label>日&nbsp;&nbsp;期：</label>
+                            <input type="text" name="case_date"/>
+                        </div>
+                        <div>
+                            <label class="case_model_detail">详情介绍:</label>
+                            <textarea name="text" cols="30" rows="10"></textarea>
+                        </div>
+                        <div>
+                            <label>案例背景图:</label>
+                            <input id="case_imgUpload" type="file" name="file"/><br/>
+                            <img class="case_img" src=""/>
+                        </div>
+                        <div>
+                            <input class="case_content_btn" type="button" value="确认提交"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="container">
+                <p class="text-center">山西朗道文化传媒有限公司</p>
+                <p class="text-center">Copyright © 2015 lando.com. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

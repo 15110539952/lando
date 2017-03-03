@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>朗道-管理员登录页</title>
+    <link rel="stylesheet" href="../css/login.css"/>
+</head>
+<body onkeydown="KeyDown();">
+    <!--<img class="fixed-bg" src="../images/admin_bg.png"/>-->
+    <div class="fixed-bg"></div>
+    <div class="bg-main">
+        <h1>管理员登陆页面</h1>
+        <div class="admin">
+            <div>
+                <label>账号：</label>
+                <input id="userId" type="text" placeholder="请输入管理员账号！"/>
+                <span></span>
+            </div>
+            <br/>
+            <div>
+                <label>密码：</label>
+                <input id="userPwd" type="password" placeholder="请输入管理员密码！"/>
+                <span></span>
+            </div>
+            <br/>
+            <div>
+                <input onclick="submitClick()" id="submit" type="button" value="登录"/>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        window.onload = function Burl(){
+            var oInput = document.getElementById("userId");
+            oInput.focus();
+        }
+        function KeyDown(){
+            if(event.keyCode ==13){
+                submitClick();
+            }
+        }
+
+            function submitClick() {
+            var submit=document.getElementById('submit');
+            var userId=document.getElementById('userId').value;
+            var userPwd=document.getElementById('userPwd').value;
+            if(!userId){
+                if(document.getElementsByTagName('span').item(0).innerHTML==''){
+                document.getElementsByTagName('span').item(0).innerHTML="请输入管理员账号！";
+                }
+                var oInput = document.getElementById("userId");
+                oInput.focus();
+            }else if(!userPwd){
+                document.getElementsByTagName('span').item(0).innerHTML=" ";
+                document.getElementsByTagName('span').item(1).innerHTML="请输入管理员密码！";
+                var oInput = document.getElementById("userPwd");
+                oInput.focus();
+            }else{
+                document.getElementsByTagName('span').item(1).innerHTML=" ";
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange= function(){
+                    if(xhr.readyState===4){
+                        if(xhr.status===200){
+                            doResponse(xhr);
+                        }else {
+                            alert('响应完成但有错误');
+                        }
+                    }
+                }
+                xhr.open('GET','../data/login.php?uid='+userId+'&upwd='+userPwd, true);
+                xhr.send(null);
+            }
+        };
+        function doResponse(xhr){
+            var data=xhr.responseText;
+            console.log(data);
+            if(data==='succ'){
+                var userId=document.getElementById('userId').value;
+                sessionStorage.setItem('userId',userId);
+
+                alert('登录成功,3秒后跳转到管理员页面');
+                setTimeout(function () {
+                    location.href="index.html";
+//                    window.location='index.html';
+                },1000)
+            }else if(data==='err'){
+                alert('账号或密码错误');
+                var oInput = document.getElementById("userId");
+                oInput.focus();
+            }else{
+                alert('未知错误!');
+            }
+        }
+
+    </script>
+</body>
+</html>
